@@ -76,6 +76,10 @@
             <label for="outlineSlider">Outline Thickness: <span id="outlineValue">3</span>px</label>
             <input type="range" id="outlineSlider" min="1" max="10" value="3">
         </div>
+        <div class="control-group">
+            <label for="fontWeightSlider">Font Thickness: <span id="fontWeightValue">400</span></label>
+            <input type="range" id="fontWeightSlider" min="100" max="900" step="100" value="400">
+        </div>
     </div>
 
     <div class="css-display">
@@ -90,32 +94,39 @@
         const demoText = document.getElementById('demoText');
         const fontSizeSlider = document.getElementById('fontSizeSlider');
         const outlineSlider = document.getElementById('outlineSlider');
+        const fontWeightSlider = document.getElementById('fontWeightSlider');
         const fontSizeValue = document.getElementById('fontSizeValue');
         const outlineValue = document.getElementById('outlineValue');
+        const fontWeightValue = document.getElementById('fontWeightValue');
         const cssCode = document.getElementById('cssCode');
 
         function updateStyles() {
             const fontSize = fontSizeSlider.value;
             const outlineThickness = outlineSlider.value;
+            const fontWeight = fontWeightSlider.value;
 
             // Update the demo text styles
             demoText.style.fontSize = fontSize + 'px';
             demoText.style.webkitTextStroke = outlineThickness + 'px white';
+            demoText.style.fontWeight = fontWeight;
 
             // Update the value displays
             fontSizeValue.textContent = fontSize;
             outlineValue.textContent = outlineThickness;
+            fontWeightValue.textContent = fontWeight;
 
             // Update the CSS code display
             cssCode.textContent = `.demo-text {
     color: black;
     font-size: ${fontSize}px;
+    font-weight: ${fontWeight};
     -webkit-text-stroke: ${outlineThickness}px white;
 }`;
         }
 
         fontSizeSlider.addEventListener('input', updateStyles);
         outlineSlider.addEventListener('input', updateStyles);
+        fontWeightSlider.addEventListener('input', updateStyles);
     </script>
 </body>
 </html>
