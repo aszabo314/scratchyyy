@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Outline Effect Demo</title>
+    <style>
+        body {
+            background-color: #4a90d9;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .demo-text {
+            color: black;
+            font-size: 48px;
+            -webkit-text-stroke: 3px white;
+            margin-bottom: 40px;
+        }
+
+        .controls {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .control-group input[type="range"] {
+            width: 100%;
+        }
+
+        .css-display {
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            max-width: 500px;
+        }
+
+        .css-display h3 {
+            margin-top: 0;
+            color: #9cdcfe;
+        }
+
+        .css-code {
+            color: #ce9178;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-text" id="demoText">
+        The quick brown fox jumps over the lazy dog. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="fontSizeSlider">Font Size: <span id="fontSizeValue">48</span>px</label>
+            <input type="range" id="fontSizeSlider" min="16" max="120" value="48">
+        </div>
+        <div class="control-group">
+            <label for="outlineSlider">Outline Thickness: <span id="outlineValue">3</span>px</label>
+            <input type="range" id="outlineSlider" min="1" max="10" value="3">
+        </div>
+    </div>
+
+    <div class="css-display">
+        <h3>Current CSS for White Outline Effect:</h3>
+        <pre class="css-code" id="cssCode">.demo-text {
+    color: black;
+    -webkit-text-stroke: 3px white;
+}</pre>
+    </div>
+
+    <script>
+        const demoText = document.getElementById('demoText');
+        const fontSizeSlider = document.getElementById('fontSizeSlider');
+        const outlineSlider = document.getElementById('outlineSlider');
+        const fontSizeValue = document.getElementById('fontSizeValue');
+        const outlineValue = document.getElementById('outlineValue');
+        const cssCode = document.getElementById('cssCode');
+
+        function updateStyles() {
+            const fontSize = fontSizeSlider.value;
+            const outlineThickness = outlineSlider.value;
+
+            // Update the demo text styles
+            demoText.style.fontSize = fontSize + 'px';
+            demoText.style.webkitTextStroke = outlineThickness + 'px white';
+
+            // Update the value displays
+            fontSizeValue.textContent = fontSize;
+            outlineValue.textContent = outlineThickness;
+
+            // Update the CSS code display
+            cssCode.textContent = `.demo-text {
+    color: black;
+    font-size: ${fontSize}px;
+    -webkit-text-stroke: ${outlineThickness}px white;
+}`;
+        }
+
+        fontSizeSlider.addEventListener('input', updateStyles);
+        outlineSlider.addEventListener('input', updateStyles);
+    </script>
+</body>
+</html>
